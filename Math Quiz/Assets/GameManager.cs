@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
 
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -101,32 +102,63 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverPanel;
 
+    string m_strPath = "Assets/";
 
     // Start is called before the first frame update
     void Start()
     {
-        //questionText.GetComponent<Text>().text = "1 + 2 = ?";
-        //example1Text.GetComponent<Text>().text = "1";
-        //example2Text.GetComponent<Text>().text = "3";
-        //example3Text.GetComponent<Text>().text = "2";
-        //example4Text.GetComponent<Text>().text = "4";
-
-        //question = problems[problemNumber - 1]["question"];
-        //answer = problems[problemNumber - 1]["answer"];
-        //example1 = problems[problemNumber - 1]["example1"];
-        //example2 = problems[problemNumber - 1]["example2"];
-        //example3 = problems[problemNumber - 1]["example3"];
-        //example4 = problems[problemNumber - 1]["example4"];
-        //questionText.GetComponent<Text>().text = question;
-        //example1Text.GetComponent<Text>().text = example1;
-        //example2Text.GetComponent<Text>().text = example2;
-        //example3Text.GetComponent<Text>().text = example3;
-        //example4Text.GetComponent<Text>().text = example4;
-
         ShowProblem();
 
         totalCorrectText.GetComponent<Text>().text = "Total Correct: 0";
         correctIncorrectText.GetComponent<Text>().text = "Correct/Incorrect";
+    }
+
+    public void SaveButtonClicked()
+    {
+        Debug.Log("SaveButtonClicked");
+        WriteData("Test\r\n");
+    }
+
+    public void LoadButtonClicked()
+    {
+        Debug.Log("LoadButtonClicked");
+        Parse();
+    }
+
+    public void WriteData(string strData)
+    {
+        FileStream f = new FileStream(m_strPath + "Data.txt", FileMode.Append, FileAccess.Write);
+
+        StreamWriter writer = new StreamWriter(f, System.Text.Encoding.Unicode);
+
+        writer.WriteLine(strData);
+
+        writer.Close();
+    }
+
+    public void Parse()
+    {
+        TextAsset data = Resources.Load("Data", typeof(TextAsset)) as TextAsset;
+
+        StringReader sr = new StringReader(data.text);
+
+        // 먼저 한줄을 읽는다. 
+        string source = sr.ReadLine();
+        string[] values;                // 쉼표로 구분된 데이터들을 저장할 배열 (values[0]이면 첫번째 데이터 )
+
+        while (source != null)
+        {
+            values = source.Split(',');  // 쉼표로 구분한다. 저장시에 쉼표로 구분하여 저장하였다.
+
+            if (values.Length == 0)
+            {
+                sr.Close();
+                return;
+            }
+            source = sr.ReadLine();    // 한줄 읽는다.
+
+            Debug.Log(source);
+        }
     }
 
     void ShowProblem()
