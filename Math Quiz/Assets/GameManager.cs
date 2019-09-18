@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverPanel;
 
-    string m_strPath = "Assets/";
+    string m_strPath = "Assets/Resources/";
 
     // Start is called before the first frame update
     void Start()
@@ -134,11 +134,19 @@ public class GameManager : MonoBehaviour
         writer.WriteLine(strData);
 
         writer.Close();
+
+        f.Close();
     }
 
     public void Parse()
     {
         TextAsset data = Resources.Load("Data", typeof(TextAsset)) as TextAsset;
+
+        if (data == null)
+        {
+            Debug.Log("No Textasset! data");
+            return;
+        }
 
         StringReader sr = new StringReader(data.text);
 
@@ -146,9 +154,12 @@ public class GameManager : MonoBehaviour
         string source = sr.ReadLine();
         string[] values;                // 쉼표로 구분된 데이터들을 저장할 배열 (values[0]이면 첫번째 데이터 )
 
+        //Debug.Log("ReadLine");
+
         while (source != null)
         {
             values = source.Split(',');  // 쉼표로 구분한다. 저장시에 쉼표로 구분하여 저장하였다.
+            //Debug.Log("values");
 
             if (values.Length == 0)
             {

@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GameManager.cs" />
+    <None Include="Assets\Resources\Data.txt" />
     <None Include="Assets\Data.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Src/Unity/Unity2018_MathQuiz/Math Quiz/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
