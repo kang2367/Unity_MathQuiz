@@ -127,6 +127,27 @@ public class GameManager : MonoBehaviour
 
     public void WriteData(string strData)
     {
+        //string path = Application.dataPath;
+        //path = path.Substring(0, path.LastIndexOf('/'));
+        //path += "/Baseball.INI";
+        //Debug.Log(path);
+
+        StreamReader sr = new StreamReader(m_strPath);
+        string line = "";
+
+        if (sr == null)
+        {
+            print("Error : " + m_strPath);
+        }
+        else
+        {
+            line = sr.ReadLine();
+            while (line != null)
+            {
+                line = sr.ReadLine();
+            }
+        }
+
         FileStream f = new FileStream(m_strPath + "Data.txt", FileMode.Append, FileAccess.Write);
 
         StreamWriter writer = new StreamWriter(f, System.Text.Encoding.Unicode);
@@ -136,6 +157,37 @@ public class GameManager : MonoBehaviour
         writer.Close();
 
         f.Close();
+
+        string path = Application.dataPath;
+        path = path.Substring(0, path.LastIndexOf('/'));
+        Debug.Log(path);
+
+        string strFileName = "/Log";
+
+        path += strFileName;
+        //Debug.Log(System.DateTime.Now.ToString("yy/MM/dd/hh/mm"));
+        //path += System.DateTime.Now.ToString("_yyMMdd_hhmm");
+        //path += System.DateTime.Now.ToString("_yyMMdd_HHmm");
+        path += ".txt";
+
+        StreamWriter sw;
+        sw = new StreamWriter(path);
+        //StreamWriter sw = new StreamWriter(path);
+        //StreamWriter sw = new StreamWriter(strFileName);
+        sw.WriteLine("Program start");
+        //sw.WriteLine("Another Line");
+        //sw.Flush();
+        //sw.Close();
+        Debug.Log("File make");
+
+        if (File.Exists(strFileName))
+        {
+            //Debug.Log(strFileName + " already exists.");
+        }
+        else
+        {
+
+        }
     }
 
     public void Parse()
