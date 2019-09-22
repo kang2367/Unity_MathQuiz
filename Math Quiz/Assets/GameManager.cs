@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
     int totalCorrect = 0;
     public GameObject totalCorrectText;
     public GameObject correctIncorrectText;
+    public GameObject statusText;
 
     public GameObject gameOverPanel;
 
@@ -111,7 +112,8 @@ public class GameManager : MonoBehaviour
 
         totalCorrectText.GetComponent<Text>().text = "Total Correct: 0";
         correctIncorrectText.GetComponent<Text>().text = "Correct/Incorrect";
-    }
+        statusText.GetComponent<Text>().text = "V0.01"; // Version 
+}
 
     public void SaveButtonClicked()
     {
@@ -127,28 +129,12 @@ public class GameManager : MonoBehaviour
 
     public void WriteData(string strData)
     {
-        //string path = Application.dataPath;
-        //path = path.Substring(0, path.LastIndexOf('/'));
-        //path += "/Baseball.INI";
-        //Debug.Log(path);
+        string path = Application.dataPath;
+        path = path.Substring(0, path.LastIndexOf('/'));
+        Debug.Log(path);
 
-        StreamReader sr = new StreamReader(m_strPath);
-        string line = "";
-
-        if (sr == null)
-        {
-            print("Error : " + m_strPath);
-        }
-        else
-        {
-            line = sr.ReadLine();
-            while (line != null)
-            {
-                line = sr.ReadLine();
-            }
-        }
-
-        FileStream f = new FileStream(m_strPath + "Data.txt", FileMode.Append, FileAccess.Write);
+        FileStream f = new FileStream(path + "/Data.txt", FileMode.Append, FileAccess.Write);
+        //FileStream f = new FileStream(m_strPath + "Data.txt", FileMode.Append, FileAccess.Write);
 
         StreamWriter writer = new StreamWriter(f, System.Text.Encoding.Unicode);
 
@@ -158,6 +144,11 @@ public class GameManager : MonoBehaviour
 
         f.Close();
 
+        statusText.GetComponent<Text>().text = "File write";
+
+        // Another example
+
+        /*
         string path = Application.dataPath;
         path = path.Substring(0, path.LastIndexOf('/'));
         Debug.Log(path);
@@ -188,10 +179,49 @@ public class GameManager : MonoBehaviour
         {
 
         }
+        */
     }
 
     public void Parse()
     {
+        //string path = Application.dataPath;
+        //path = path.Substring(0, path.LastIndexOf('/'));
+        //path += "/Baseball.INI";
+        //Debug.Log(path);
+
+        string path = Application.dataPath;
+        path = path.Substring(0, path.LastIndexOf('/'));
+        Debug.Log(path);
+
+        StreamReader sr = new StreamReader(path + "/Data.txt");
+        //StreamReader sr = new StreamReader(m_strPath + "Data.txt");
+        string line = "";
+
+        if (sr == null)
+        {
+            print("Error : " + m_strPath);  // Log message
+            statusText.GetComponent<Text>().text = "Read error";
+        }
+        else
+        {
+            statusText.GetComponent<Text>().text = "File read";
+            line = sr.ReadLine();
+            Debug.Log(line);
+            statusText.GetComponent<Text>().text = line;
+            while (line != null)
+            {
+                line = sr.ReadLine();
+                Debug.Log(line);
+                //statusText.GetComponent<Text>().text = line;
+            }
+        }
+
+        sr.Close();
+
+
+        // File must exist in resource folder 
+        /*
+
         TextAsset data = Resources.Load("Data", typeof(TextAsset)) as TextAsset;
 
         if (data == null)
@@ -222,6 +252,9 @@ public class GameManager : MonoBehaviour
 
             Debug.Log(source);
         }
+
+        */
+
     }
 
     void ShowProblem()
