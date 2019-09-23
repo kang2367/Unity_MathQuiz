@@ -238,4 +238,3 @@ D:\Src\Unity\Unity2018_MathQuiz\Math Quiz\obj\Debug\Assembly-CSharp.csproj.CoreC
 D:\Src\Unity\Unity2018_MathQuiz\Math Quiz\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\Src\Unity\Unity2018_MathQuiz\Math Quiz\obj\Debug\Assembly-CSharp.dll
 D:\Src\Unity\Unity2018_MathQuiz\Math Quiz\obj\Debug\Assembly-CSharp.pdb
-D:\Src\Unity\Unity2018_MathQuiz\Math Quiz\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.dll

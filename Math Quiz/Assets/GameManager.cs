@@ -129,7 +129,8 @@ public class GameManager : MonoBehaviour
 
     public void WriteData(string strData)
     {
-        string path = Application.dataPath;
+        //string path = Application.dataPath;
+        string path = Application.persistentDataPath;   // for Android
         path = path.Substring(0, path.LastIndexOf('/'));
         Debug.Log(path);
 
@@ -189,7 +190,8 @@ public class GameManager : MonoBehaviour
         //path += "/Baseball.INI";
         //Debug.Log(path);
 
-        string path = Application.dataPath;
+        //string path = Application.dataPath;
+        string path = Application.persistentDataPath;   // for Android
         path = path.Substring(0, path.LastIndexOf('/'));
         Debug.Log(path);
 
