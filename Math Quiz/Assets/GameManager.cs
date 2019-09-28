@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
             {"answer", "3"},
             {"example1", "1"},
             {"example2", "3"},
-            {"example3", "2"},
-            {"example4", "4"}},
+            {"example3", "Clear"},
+            {"example4", "Enter"}},
         new Dictionary<string,string>(){
             {"question", "3 + 2 = ?"},
             {"answer", "5"},
