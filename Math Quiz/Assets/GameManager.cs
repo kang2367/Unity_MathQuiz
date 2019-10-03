@@ -105,6 +105,10 @@ public class GameManager : MonoBehaviour
 
     string m_strPath = "Assets/Resources/";
 
+    private Text logText = null;
+    private ScrollRect scroll_rect = null;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -113,6 +117,16 @@ public class GameManager : MonoBehaviour
         totalCorrectText.GetComponent<Text>().text = "Total Correct: 0";
         correctIncorrectText.GetComponent<Text>().text = "Correct/Incorrect";
         statusText.GetComponent<Text>().text = "V0.01"; // Version 
+
+        logText = GameObject.Find("log_Text").GetComponent<Text>();
+        scroll_rect = GameObject.Find("Scroll View").GetComponent<ScrollRect>();
+
+        if (logText != null)
+        {
+            logText.text += "Hello Log Window!" + "\n";
+            logText.text += "Hello Log Window again and again!" + "\n";
+        }
+         
 }
 
     public void SaveButtonClicked()
@@ -363,6 +377,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            logText.text += "Mouse down position (" + "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + ")\n";
+            scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        }
     }
 }

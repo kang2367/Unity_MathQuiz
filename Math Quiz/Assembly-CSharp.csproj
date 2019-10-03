@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\Mesh.cs" />
+    <Compile Include="Assets\Script\mLogWindow.cs" />
     <None Include="Assets\Resources\Data.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Src/Unity/Unity2018_MathQuiz/Math Quiz/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
