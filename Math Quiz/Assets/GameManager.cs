@@ -107,6 +107,8 @@ public class GameManager : MonoBehaviour
 
     private Text logText = null;
     private ScrollRect scroll_rect = null;
+    private InputField inputAnswer = null;
+    private Text textAnswer = null;
 
 
     // Start is called before the first frame update
@@ -120,11 +122,14 @@ public class GameManager : MonoBehaviour
 
         logText = GameObject.Find("log_Text").GetComponent<Text>();
         scroll_rect = GameObject.Find("Scroll View").GetComponent<ScrollRect>();
+        inputAnswer = GameObject.Find("InputField").GetComponent<InputField>();
+        inputAnswer.enabled = false;
+        textAnswer = GameObject.Find("TextAnswer").GetComponent<Text>();
 
         if (logText != null)
         {
             logText.text += "Hello Log Window!" + "\n";
-            logText.text += "Hello Log Window again and again!" + "\n";
+            //logText.text += "Hello Log Window again and again!" + "\n";
         }
          
 }
@@ -289,15 +294,97 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void Example1ButtonClicked()
+    public void Example0ButtonClicked()
     {
-        Debug.Log("Example1ButtonClicked");
-        SelectExample(example1);
+        //Debug.Log("Example1ButtonClicked");
+        //SelectExample(example1);
+
+        textAnswer.text += "0";
+        logText.text += "0" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
 
         //Debug.Log(example1);
         //problemNumber += 1;
         //ShowProblem();
     }
+
+    public void Example1ButtonClicked()
+    {
+        textAnswer.text += "1";
+        logText.text += "1" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void Example2ButtonClicked()
+    {
+        textAnswer.text += "2";
+        logText.text += "2" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void Example3ButtonClicked()
+    {
+        textAnswer.text += "3";
+        logText.text += "3" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void Example4ButtonClicked()
+    {
+        textAnswer.text += "4";
+        logText.text += "4" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+
+    public void Example5ButtonClicked()
+    {
+        textAnswer.text += "5";
+        logText.text += "5" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void Example6ButtonClicked()
+    {
+        textAnswer.text += "6";
+        logText.text += "6" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void Example7ButtonClicked()
+    {
+        textAnswer.text += "7";
+        logText.text += "7" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void Example8ButtonClicked()
+    {
+        textAnswer.text += "8";
+        logText.text += "8" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void Example9ButtonClicked()
+    {
+        textAnswer.text += "9";
+        logText.text += "9" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void ExampleClearButtonClicked()
+    {
+        textAnswer.text = "";
+        logText.text += "Clear" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
+    public void ExampleEnterButtonClicked()
+    {
+        logText.text += "Enter" + "\n";
+        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+    }
+
 
     void SelectExample(string example)
     {
@@ -334,35 +421,6 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
     }
 
-    public void Example2ButtonClicked()
-    {
-        Debug.Log("Example2ButtonClicked");
-        SelectExample(example2);
-
-        //Debug.Log(example2);
-        //problemNumber += 1;
-        //ShowProblem();
-    }
-
-    public void Example3ButtonClicked()
-    {
-        Debug.Log("Example3ButtonClicked");
-        SelectExample(example3);
-
-        //Debug.Log(example3);
-        //problemNumber += 1;
-        //ShowProblem();
-    }
-
-    public void Example4ButtonClicked()
-    {
-        Debug.Log("Example4ButtonClicked");
-        SelectExample(example4);
-
-        //Debug.Log(example4);
-        //problemNumber += 1;
-        //ShowProblem();
-    }
 
     public void Replay()
     {
@@ -377,10 +435,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            logText.text += "Mouse down position (" + "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + ")\n";
-            scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
-        }
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    //logText.text += "Mouse down position (" + "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + ")\n";
+        //    logText.text += "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + "\n";
+        //    scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //}
     }
 }
