@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 using System.IO;
+//using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,78 +17,79 @@ public class GameManager : MonoBehaviour
     public GameObject example3Text;
     public GameObject example4Text;
 
-    Dictionary<string, string>[] problems = {
-        new Dictionary<string,string>(){
-            {"question", "1 + 2 = ?"},
-            {"answer", "3"},
-            {"example1", "1"},
-            {"example2", "3"},
-            {"example3", "Clear"},
-            {"example4", "Enter"}},
-        new Dictionary<string,string>(){
-            {"question", "3 + 2 = ?"},
-            {"answer", "5"},
-            {"example1", "4"},
-            {"example2", "6"},
-            {"example3", "5"},
-            {"example4", "2"}},
-        new Dictionary<string,string>(){
-            {"question", "3 + 3 = ?"},
-            {"answer", "6"},
-            {"example1", "6"},
-            {"example2", "1"},
-            {"example3", "5"},
-            {"example4", "4"}},
-        new Dictionary<string,string>(){
-            {"question", "0 + 3 = ?"},
-            {"answer", "3"},
-            {"example1", "1"},
-            {"example2", "2"},
-            {"example3", "4"},
-            {"example4", "3"}},
-        new Dictionary<string,string>(){
-            {"question", "4 + 2 = ?"},
-            {"answer", "6"},
-            {"example1", "6"},
-            {"example2", "4"},
-            {"example3", "2"},
-            {"example4", "5"}},
-        new Dictionary<string,string>(){
-            {"question", "5 + 4 = ?"},
-            {"answer", "9"},
-            {"example1", "8"},
-            {"example2", "6"},
-            {"example3", "7"},
-            {"example4", "9"}},
-        new Dictionary<string,string>(){
-            {"question", "4 + 4 = ?"},
-            {"answer", "8"},
-            {"example1", "7"},
-            {"example2", "1"},
-            {"example3", "8"},
-            {"example4", "3"}},
-        new Dictionary<string,string>(){
-            {"question", "2 + 5 = ?"},
-            {"answer", "7"},
-            {"example1", "7"},
-            {"example2", "1"},
-            {"example3", "5"},
-            {"example4", "4"}},
-        new Dictionary<string,string>(){
-            {"question", "1 + 4 = ?"},
-            {"answer", "5"},
-            {"example1", "4"},
-            {"example2", "5"},
-            {"example3", "0"},
-            {"example4", "6"}},
-        new Dictionary<string,string>(){
-            {"question", "3 + 1 = ?"},
-            {"answer", "4"},
-            {"example1", "8"},
-            {"example2", "3" },
-            {"example3", "4"},
-            {"example4", "0"}}
-    };
+    //Dictionary<string, string>[] problems = {
+    //    new Dictionary<string,string>(){
+    //        {"question", "1 + 2 = ?"},
+    //        {"answer", "3"},
+    //        {"example1", "1"},
+    //        {"example2", "3"},
+    //        {"example3", "Clear"},
+    //        {"example4", "Enter"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "3 + 2 = ?"},
+    //        {"answer", "5"},
+    //        {"example1", "4"},
+    //        {"example2", "6"},
+    //        {"example3", "5"},
+    //        {"example4", "2"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "3 + 3 = ?"},
+    //        {"answer", "6"},
+    //        {"example1", "6"},
+    //        {"example2", "1"},
+    //        {"example3", "5"},
+    //        {"example4", "4"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "0 + 3 = ?"},
+    //        {"answer", "3"},
+    //        {"example1", "1"},
+    //        {"example2", "2"},
+    //        {"example3", "4"},
+    //        {"example4", "3"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "4 + 2 = ?"},
+    //        {"answer", "6"},
+    //        {"example1", "6"},
+    //        {"example2", "4"},
+    //        {"example3", "2"},
+    //        {"example4", "5"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "5 + 4 = ?"},
+    //        {"answer", "9"},
+    //        {"example1", "8"},
+    //        {"example2", "6"},
+    //        {"example3", "7"},
+    //        {"example4", "9"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "4 + 4 = ?"},
+    //        {"answer", "8"},
+    //        {"example1", "7"},
+    //        {"example2", "1"},
+    //        {"example3", "8"},
+    //        {"example4", "3"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "2 + 5 = ?"},
+    //        {"answer", "7"},
+    //        {"example1", "7"},
+    //        {"example2", "1"},
+    //        {"example3", "5"},
+    //        {"example4", "4"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "1 + 4 = ?"},
+    //        {"answer", "5"},
+    //        {"example1", "4"},
+    //        {"example2", "5"},
+    //        {"example3", "0"},
+    //        {"example4", "6"}},
+    //    new Dictionary<string,string>(){
+    //        {"question", "3 + 1 = ?"},
+    //        {"answer", "4"},
+    //        {"example1", "8"},
+    //        {"example2", "3" },
+    //        {"example3", "4"},
+    //        {"example4", "0"}}
+    //};
+
     int problemNumber = 1;
     string question = "";
     string answer = "";
@@ -109,12 +111,16 @@ public class GameManager : MonoBehaviour
     private ScrollRect scroll_rect = null;
     private InputField inputAnswer = null;
     private Text textAnswer = null;
+    private Text textQNumber = null;
 
+    int firstNumber = Random.Range(1, 10);
+    int secondNumber = Random.Range(1, 10);
+    int problemsLength = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-        ShowProblem();
+        //ShowProblem();
 
         totalCorrectText.GetComponent<Text>().text = "Total Correct: 0";
         correctIncorrectText.GetComponent<Text>().text = "Correct/Incorrect";
@@ -125,14 +131,26 @@ public class GameManager : MonoBehaviour
         inputAnswer = GameObject.Find("InputField").GetComponent<InputField>();
         inputAnswer.enabled = false;
         textAnswer = GameObject.Find("TextAnswer").GetComponent<Text>();
+        textQNumber = GameObject.Find("QNumberText").GetComponent<Text>();
+
+        problemsLength = 10;
+
+        ShowProblem();
 
         if (logText != null)
         {
-            logText.text += "Hello Log Window!" + "\n";
+            //logText.text += "" + "\n";
+            //logText.text += "Hello Log Window!" + "\n";
             //logText.text += "Hello Log Window again and again!" + "\n";
         }
-         
-}
+
+    }
+
+    private void Awake()
+    {
+        //value = Random.Range(-1, 1);
+
+    }
 
     public void SaveButtonClicked()
     {
@@ -280,17 +298,28 @@ public class GameManager : MonoBehaviour
 
     void ShowProblem()
     {
-        question = problems[problemNumber - 1]["question"];
-        answer = problems[problemNumber - 1]["answer"];
-        example1 = problems[problemNumber - 1]["example1"];
-        example2 = problems[problemNumber - 1]["example2"];
-        example3 = problems[problemNumber - 1]["example3"];
-        example4 = problems[problemNumber - 1]["example4"];
+        // { "question", "1 + 2 = ?"},
+
+        //question = problems[problemNumber - 1]["question"];
+        //answer = problems[problemNumber - 1]["answer"];
+        //example1 = problems[problemNumber - 1]["example1"];
+        //example2 = problems[problemNumber - 1]["example2"];
+        //example3 = problems[problemNumber - 1]["example3"];
+        //example4 = problems[problemNumber - 1]["example4"];
+
+        firstNumber = Random.Range(1, 10);
+        secondNumber = Random.Range(1, 10);
+
+        question = firstNumber.ToString() + " + " + secondNumber.ToString();
+
         questionText.GetComponent<Text>().text = question;
-        example1Text.GetComponent<Text>().text = example1;
-        example2Text.GetComponent<Text>().text = example2;
-        example3Text.GetComponent<Text>().text = example3;
-        example4Text.GetComponent<Text>().text = example4;
+
+        textQNumber.text = problemNumber.ToString() + " / " + problemsLength.ToString(); 
+
+        //example1Text.GetComponent<Text>().text = example1;
+        //example2Text.GetComponent<Text>().text = example2;
+        //example3Text.GetComponent<Text>().text = example3;
+        //example4Text.GetComponent<Text>().text = example4;
     }
 
 
@@ -300,8 +329,8 @@ public class GameManager : MonoBehaviour
         //SelectExample(example1);
 
         textAnswer.text += "0";
-        logText.text += "0" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "0" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
 
         //Debug.Log(example1);
         //problemNumber += 1;
@@ -311,65 +340,65 @@ public class GameManager : MonoBehaviour
     public void Example1ButtonClicked()
     {
         textAnswer.text += "1";
-        logText.text += "1" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "1" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
     public void Example2ButtonClicked()
     {
         textAnswer.text += "2";
-        logText.text += "2" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "2" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
     public void Example3ButtonClicked()
     {
         textAnswer.text += "3";
-        logText.text += "3" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "3" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
     public void Example4ButtonClicked()
     {
         textAnswer.text += "4";
-        logText.text += "4" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "4" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
 
     public void Example5ButtonClicked()
     {
         textAnswer.text += "5";
-        logText.text += "5" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "5" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
     public void Example6ButtonClicked()
     {
         textAnswer.text += "6";
-        logText.text += "6" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "6" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
     public void Example7ButtonClicked()
     {
         textAnswer.text += "7";
-        logText.text += "7" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "7" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
     public void Example8ButtonClicked()
     {
         textAnswer.text += "8";
-        logText.text += "8" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "8" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
     public void Example9ButtonClicked()
     {
         textAnswer.text += "9";
-        logText.text += "9" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //logText.text += "9" + "\n";
+        //scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
     }
 
     public void ExampleClearButtonClicked()
@@ -381,27 +410,21 @@ public class GameManager : MonoBehaviour
 
     public void ExampleEnterButtonClicked()
     {
-        logText.text += "Enter" + "\n";
-        scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
-    }
+        //logText.text += "Enter" + "\n";
 
+        scroll_rect.verticalNormalizedPosition = 0.0f;
 
-    void SelectExample(string example)
-    {
-        Debug.Log(example);
-
-        if (answer.Equals(example))
-        {
-            totalCorrect += 1;
-            totalCorrectText.GetComponent<Text>().text = totalCorrect.ToString();
-            correctIncorrectText.GetComponent<Text>().text = "Correct";
-        }
+        if ((firstNumber + secondNumber) == int.Parse(textAnswer.text))
+            logText.text += "Correct" + "\n";
         else
-        {
-            correctIncorrectText.GetComponent<Text>().text = "Incorrect";
-        }
+            logText.text += "Incorrect" + "\n";
 
-        if (problemNumber < problems.Length)
+        scroll_rect.verticalNormalizedPosition = 0.0f;
+
+        textAnswer.text = "";
+
+        //if (problemNumber < problems.Length)
+        if (problemNumber < problemsLength)
         {
             problemNumber += 1;
             ShowProblem();
@@ -411,6 +434,36 @@ public class GameManager : MonoBehaviour
             Debug.Log("ShowGameOverBox");
             ShowGameOverBox();
         }
+
+        //ShowProblem();
+    }
+
+
+    void SelectExample(string example)
+    {
+        //Debug.Log(example);
+
+        //if (answer.Equals(example))
+        //{
+        //    totalCorrect += 1;
+        //    totalCorrectText.GetComponent<Text>().text = totalCorrect.ToString();
+        //    correctIncorrectText.GetComponent<Text>().text = "Correct";
+        //}
+        //else
+        //{
+        //    correctIncorrectText.GetComponent<Text>().text = "Incorrect";
+        //}
+
+        //if (problemNumber < problems.Length)
+        //{
+        //    problemNumber += 1;
+        //    ShowProblem();
+        //}
+        //else
+        //{
+        //    Debug.Log("ShowGameOverBox");
+        //    ShowGameOverBox();
+        //}
 
         //problemNumber += 1;
         //ShowProblem();
