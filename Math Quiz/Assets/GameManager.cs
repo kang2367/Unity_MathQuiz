@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 using System.IO;
+using System;
 //using System.Linq;
 
 public class GameManager : MonoBehaviour
@@ -113,9 +114,12 @@ public class GameManager : MonoBehaviour
     private Text textAnswer = null;
     private Text textQNumber = null;
 
-    int firstNumber = Random.Range(1, 10);
-    int secondNumber = Random.Range(1, 10);
+    //int firstNumber =  UnityEngine.Random.Range(1, 10);
+    //int secondNumber = UnityEngine.Random.Range(1, 10);
+    int firstNumber = 0;
+    int secondNumber = 0;
     int problemsLength = 10;
+
 
     // Start is called before the first frame update
     void Start()
@@ -307,8 +311,14 @@ public class GameManager : MonoBehaviour
         //example3 = problems[problemNumber - 1]["example3"];
         //example4 = problems[problemNumber - 1]["example4"];
 
-        firstNumber = Random.Range(1, 10);
-        secondNumber = Random.Range(1, 10);
+        System.Random randomDirection = new System.Random();
+        int directionChoice = randomDirection.Next(1, 10);
+
+        //firstNumber = UnityEngine.Random.Range(1, 10);
+        //secondNumber = UnityEngine.Random.Range(1, 10);
+
+        firstNumber = randomDirection.Next(1, 10);
+        secondNumber = randomDirection.Next(1, 10);
 
         question = firstNumber.ToString() + " + " + secondNumber.ToString();
 
