@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
     int secondNumber = 0;
     int problemsLength = 10;
 
+    private Toggle toggleUI = null;
 
     // Start is called before the first frame update
     void Start()
@@ -136,6 +137,8 @@ public class GameManager : MonoBehaviour
         inputAnswer.enabled = false;
         textAnswer = GameObject.Find("TextAnswer").GetComponent<Text>();
         textQNumber = GameObject.Find("QNumberText").GetComponent<Text>();
+
+        toggleUI = GameObject.Find("ToggleUI").GetComponent<Toggle>();
 
         problemsLength = 10;
 
@@ -317,8 +320,12 @@ public class GameManager : MonoBehaviour
         //firstNumber = UnityEngine.Random.Range(1, 10);
         //secondNumber = UnityEngine.Random.Range(1, 10);
 
-        firstNumber = randomDirection.Next(1, 10);
-        secondNumber = randomDirection.Next(1, 10);
+        //firstNumber = randomDirection.Next(1, 10);
+        //secondNumber = randomDirection.Next(1, 10);
+
+        // Basic lavel 1 
+        firstNumber = randomDirection.Next(1, 5);
+        secondNumber = randomDirection.Next(1, 4);
 
         question = firstNumber.ToString() + " + " + secondNumber.ToString();
 
@@ -504,5 +511,20 @@ public class GameManager : MonoBehaviour
         //    logText.text += "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + "\n";
         //    scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
         //}
+
+        PanelControl(toggleUI);
+
+    }
+
+    public void PanelControl(Toggle toggletest)
+    {
+        if(toggletest.isOn)
+        {
+            scroll_rect.gameObject.SetActive(true);
+        }
+        else
+        {
+            scroll_rect.gameObject.SetActive(false);
+        }
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="Assets\FreeDraw\Scripts\Drawable.cs" />
     <Compile Include="Assets\FreeDraw\Scripts\DrawingSettings.cs" />
     <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\MathBasic.cs" />
     <Compile Include="Assets\Mesh.cs" />
     <Compile Include="Assets\Script\mLogWindow.cs" />
     <Compile Include="Assets\scripts\CalendarController.cs" />

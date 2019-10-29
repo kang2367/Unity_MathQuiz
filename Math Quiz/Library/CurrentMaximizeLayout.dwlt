@@ -23,10 +23,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 911, y: 448}
-  m_MaxSize: {x: 22006, y: 10024}
+  m_MinSize: {x: 909, y: 424}
+  m_MaxSize: {x: 22004, y: 10000}
   vertical: 0
-  controlID: 707
+  controlID: 4616
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -128,10 +128,10 @@ MonoBehaviour:
     y: 0
     width: 701
     height: 731
-  m_MinSize: {x: 202, y: 448}
-  m_MaxSize: {x: 4002, y: 8048}
+  m_MinSize: {x: 202, y: 424}
+  m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 614
+  controlID: 4617
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,9 +190,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -13.143361, y: -2.006754, z: 284.4515}
+    m_Target: {x: -6.362186, y: 1.4905856, z: 178.05484}
     speed: 2
-    m_Value: {x: -13.143361, y: -2.006754, z: 284.4515}
+    m_Value: {x: -6.362186, y: 1.4905856, z: 178.05484}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -224,9 +224,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 26.610582
+    m_Target: 14.121296
     speed: 2
-    m_Value: 26.610582
+    m_Value: 14.121296
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -283,8 +283,8 @@ MonoBehaviour:
     y: 375
     width: 701
     height: 356
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 224}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -347,7 +347,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c2f9ffffdaf9ffffecf9ffffbcfaffffcefaffff3cfbffffd6fbffff3c2e0000c8300000
+      m_ExpandedIDs: eeefffffd4f0ffffaaf8ffffd2f8fffffaf8ffffb0f9ffff1afaffff32faffff3efaffff1afbffffd6fbffffec310000483200004e3e0000aa3e0000ec470000224800002e48000086480000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -435,20 +435,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
   m_ViewMode: 1
-  m_StartGridSize: 64
+  m_StartGridSize: 40
   m_LastFolders:
-  - Assets/Scenes
-  m_LastFoldersGridSize: -1
+  - Assets
+  m_LastFoldersGridSize: 40
   m_LastProjectPath: D:\Src\Unity\Unity2018_MathQuiz\Math Quiz
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9e270000
-    m_LastClickedID: 10142
-    m_ExpandedIDs: 000000002a2600009e27000000ca9a3b
+    m_SelectedIDs: 2a260000
+    m_LastClickedID: 9770
+    m_ExpandedIDs: 000000002a2600009e27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -476,7 +476,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002a2600009e27000000ca9a3b
+    m_ExpandedIDs: 000000002a2600009e27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -528,8 +528,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 64
+    m_ScrollPosition: {x: 0, y: 720}
+    m_GridSize: 40
   m_DirectoriesAreaWidth: 185
 --- !u!114 &12
 MonoBehaviour:
