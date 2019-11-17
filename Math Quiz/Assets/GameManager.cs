@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
     private InputField inputAnswer = null;
     private Text textAnswer = null;
     private Text textQNumber = null;
+    //private Text textResult = null;
 
     //int firstNumber =  UnityEngine.Random.Range(1, 10);
     //int secondNumber = UnityEngine.Random.Range(1, 10);
@@ -121,6 +122,12 @@ public class GameManager : MonoBehaviour
     int problemsLength = 10;
 
     private Toggle toggleUI = null;
+
+    float timer;
+    float waitingTime = 0.0f;
+
+    string strResult = "";
+    bool bResultDisplay = false;
 
     // Start is called before the first frame update
     void Start()
@@ -140,7 +147,12 @@ public class GameManager : MonoBehaviour
 
         toggleUI = GameObject.Find("ToggleUI").GetComponent<Toggle>();
 
-        problemsLength = 10;
+        //problemsLength = 30;    // 10;
+
+        //textResult.text = "";
+
+        timer = 0.0f;
+        waitingTime = 2.0f;
 
         ShowProblem();
 
@@ -151,6 +163,7 @@ public class GameManager : MonoBehaviour
             //logText.text += "Hello Log Window again and again!" + "\n";
         }
 
+
     }
 
     private void Awake()
@@ -158,6 +171,71 @@ public class GameManager : MonoBehaviour
         //value = Random.Range(-1, 1);
 
     }
+
+
+    void Timer()
+    {
+        if(bResultDisplay == true)
+        {
+            timer += Time.deltaTime;
+
+            if (timer > waitingTime)    // Debugging need (항상 실행되고 있음)
+            {
+                //Action
+                timer = 0;
+
+                if (strResult == "Correct")
+                {
+                    if (problemNumber < problemsLength)
+                    {
+                        problemNumber += 1;
+                        ShowProblem();
+                    }
+                    else
+                    {
+                        Debug.Log("ShowGameOverBox");
+
+                        // Save result log
+                        string strDateTime = "";
+                        strDateTime = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+                        Debug.Log(strDateTime);
+
+                        WriteData("Game end:" + strDateTime);
+
+                        ShowGameOverBox();
+                    }
+                }
+                else
+                {
+                    questionText.GetComponent<Text>().text = question;
+                }
+
+                strResult = "";
+                bResultDisplay = false;
+                textAnswer.text = "";
+            }
+        }
+        else
+        {
+            timer = 0;
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    //logText.text += "Mouse down position (" + "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + ")\n";
+        //    logText.text += "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + "\n";
+        //    scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
+        //}
+
+        PanelControl(toggleUI);
+
+        Timer();
+    }
+
 
     public void SaveButtonClicked()
     {
@@ -323,11 +401,23 @@ public class GameManager : MonoBehaviour
         //firstNumber = randomDirection.Next(1, 10);
         //secondNumber = randomDirection.Next(1, 10);
 
-        // Basic lavel 1 
-        firstNumber = randomDirection.Next(1, 5);
-        secondNumber = randomDirection.Next(1, 4);
+        // Basic lavel 1 (10 이하의 덧셈)
+        do
+        {
+            firstNumber = randomDirection.Next(1, 8);
+            secondNumber = randomDirection.Next(1, 8);
+            //Debug.Log(firstNumber.ToString() + " + " + secondNumber.ToString() + " = ?");
+            //Debug.Log((firstNumber + secondNumber).ToString());
+        } while ((firstNumber + secondNumber) > 9);
 
-        question = firstNumber.ToString() + " + " + secondNumber.ToString();
+        //if((firstNumber + secondNumber) > 10)
+        //{
+        //    firstNumber = randomDirection.Next(1, 8);
+        //    secondNumber = randomDirection.Next(1, 8);
+        //    Debug.Log("Over 10");
+        //}
+
+        question = firstNumber.ToString() + " + " + secondNumber.ToString() + " = ?";
 
         questionText.GetComponent<Text>().text = question;
 
@@ -432,29 +522,76 @@ public class GameManager : MonoBehaviour
         scroll_rect.verticalNormalizedPosition = 0.0f;
 
         if ((firstNumber + secondNumber) == int.Parse(textAnswer.text))
+        {
             logText.text += "Correct" + "\n";
+            // Display result 1 sec
+
+            strResult = "Correct";
+            questionText.GetComponent<Text>().text = strResult;
+            waitingTime = 0.5f;
+            bResultDisplay = true;
+
+            //StartCoroutine(WaitForIt());
+
+            /*
+            if (problemNumber < problemsLength)
+            {
+                problemNumber += 1;
+                ShowProblem();
+                Debug.Log("ShowProblem");
+            }
+            else
+            {
+                Debug.Log("ShowGameOverBox");
+
+                // Save result log
+                ShowGameOverBox();
+            }
+            */
+        }
         else
+        {
             logText.text += "Incorrect" + "\n";
+            // Display result 1 sec
+
+            strResult = "Incorrect";
+            questionText.GetComponent<Text>().text = strResult;
+            waitingTime = 0.5f;
+            bResultDisplay = true;
+
+            //StartCoroutine(WaitForIt());
+        }
 
         scroll_rect.verticalNormalizedPosition = 0.0f;
 
-        textAnswer.text = "";
+        //if ((firstNumber + secondNumber) == int.Parse(textAnswer.text))
+        //    logText.text += "Correct" + "\n";
+        //else
+        //    logText.text += "Incorrect" + "\n";
 
-        //if (problemNumber < problems.Length)
-        if (problemNumber < problemsLength)
-        {
-            problemNumber += 1;
-            ShowProblem();
-        }
-        else
-        {
-            Debug.Log("ShowGameOverBox");
-            ShowGameOverBox();
-        }
+        //scroll_rect.verticalNormalizedPosition = 0.0f;
 
-        //ShowProblem();
+        //textAnswer.text = "";
+
+        //if (problemNumber < problemsLength)
+        //{
+        //    problemNumber += 1;
+        //    ShowProblem();
+        //}
+        //else
+        //{
+        //    Debug.Log("ShowGameOverBox");
+        //    ShowGameOverBox();
+        //}
+
     }
 
+    IEnumerator WaitForIt()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Debug.Log("WiatForSeconds");
+        //check = true;
+    }
 
     void SelectExample(string example)
     {
@@ -502,19 +639,6 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    //logText.text += "Mouse down position (" + "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + ")\n";
-        //    logText.text += "X:" + Input.mousePosition.x + " Y:" + Input.mousePosition.y + "\n";
-        //    scroll_rect.verticalNormalizedPosition = 0.0f;      // Scroll bottom (0.0f), Scroll top (1.0f)
-        //}
-
-        PanelControl(toggleUI);
-
-    }
 
     public void PanelControl(Toggle toggletest)
     {
