@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-D:/Src/Unity/Unity2018_MathQuiz/Math Quiz/Release_Android/MathQuiz.apk
+D:/Src/Unity/Unity2018_MathQuiz/Math Quiz/Release_Android/MathQuiz_191126.apk
 SceneListBegin?
 Assets/Scenes/GameScene.unity
 SceneListEnd?
